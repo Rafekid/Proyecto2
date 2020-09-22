@@ -9,7 +9,7 @@
 </head>
 <body>
     <form action="logica/verificarUsuario.php" method="POST">
-        <h1>Log In</h1>
+        <h1>Log In de Uasuario</h1>
         <div class="form-group">
             <label for="">Usuario: </label>
             <input type="email" name="usuario" class="form-control" id="" placeholder="Usuario" pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" required title="Este campo requiere un correo electrónico">
