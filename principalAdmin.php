@@ -25,6 +25,13 @@
     <div class="alert alert-success" role="alert">
     Bienvenido al portal de Administrador <?php echo $usuario?>
     </div>
+    <div class="sidebar">
+        <h2>MENU DE OPCIONES</h2>
+        <ul>
+        <li><a href="">Listado Cajeros</a></li>
+        <li><a href="">Agregar Cajeros</a></li>
+        </ul>
+    </div>
     <a href="logica/cerrarSessionAdmin.php" class="btn btn-primary btn-lg active btn-lg btn-block" role="button" aria-pressed="true">Cerrar Sesión</a>
 </body>
 </html>
