@@ -43,7 +43,7 @@
                 <td><?php echo $filas['bloqueo']?></td>
                 <td>
                 <a href="id=<?php echo $filas['id_cajero']?>">Bloquear</a>
-                <a href="">Desbloquear</a>
+                <a href="id=<?php echo $filas['id_cajero']?>">Desbloquear</a>
                 </td>
             </tr>
             <?php 
