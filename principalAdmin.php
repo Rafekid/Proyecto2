@@ -14,24 +14,22 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Administrador</title>
-</head>
+<?php include "layouts/headAdmin.php";?>
 <body>
     <div class="alert alert-success" role="alert">
     Bienvenido al portal de Administrador <?php echo $usuario?>
     </div>
     <div class="sidebar">
-        <h2>MENU DE OPCIONES</h2>
+        <h2>MENÚ</h2>
         <ul>
-        <li><a href="">Listado Cajeros</a></li>
+        <li><a href="listaCajeros.php">Listado Cajeros</a></li>
         <li><a href="">Agregar Cajeros</a></li>
+        <li><a href="logica/cerrarSessionAdmin.php">Cerrar Sesión</a></li>   
         </ul>
     </div>
-    <a href="logica/cerrarSessionAdmin.php" class="btn btn-primary btn-lg active btn-lg btn-block" role="button" aria-pressed="true">Cerrar Sesión</a>
+    <div class="contenido">
+        <img class="menu-bar"src="imagenes/sidebar.png" alt="sidebar" width="45" height="45">
+    </div>
+    <script src="js/abrir.js"></script>
 </body>
 </html>
