@@ -13,7 +13,7 @@
     $contrasena= $_POST['contrasena'];
 
     /* Aqui validamos en la db que exista el usuario y contraseña */
-    $q = "SELECT COUNT(*) as contar from administradores where usuarios = '$usuario' AND pwd = '$contrasena'";
+    $q = "SELECT COUNT(*) as contar from user where email = '$usuario' AND password = '$contrasena'";
 
     $consulta = mysqli_query($conexion,$q) or die(mysql_error());
     $array = mysqli_fetch_array($consulta);
