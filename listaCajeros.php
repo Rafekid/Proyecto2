@@ -16,42 +16,38 @@
 <html lang="en">
 <?php include "layouts/headAdmin.php";?>
 <body>
-    <?php 
-        include 'conexiones/conexion.php';
-        $sql="SELECT id_cajero,nom_comp,usuario,bloqueo FROM cajeros";
-        $resultado=mysqli_query($conexion,$sql) or die(mysql_error());
-    ?>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>NOMBRE</th>
-                <th>USUARIO</th>
-                <th>BLOQUEO</th>
-                <th>ACCIONES</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php 
-            while($filas = mysqli_fetch_assoc($resultado)) {
-
-            ?>
-            <tr>
-                <td><?php echo $filas['id_cajero']?></td>
-                <td><?php echo $filas['nom_comp']?></td>
-                <td><?php echo $filas['usuario']?></td>
-                <td><?php echo $filas['bloqueo']?></td>
-                <td>
-                <a href="id=<?php echo $filas['id_cajero']?>">Bloquear</a>
-                <a href="id=<?php echo $filas['id_cajero']?>">Desbloquear</a>
-                </td>
-            </tr>
-            <?php 
-                    }
-            
-            $sql = null;
-            $conexion = null;?>
-        </tbody>
-    </table>
+    <?php require_once "conexiones/conexion.php"?>
+    <div class="alert alert-success" role="alert">
+    Bienvenido al portal de Administrador <?php echo $usuario?>
+    </div>
+    <div class="sidebar">
+        <h2>MENÚ</h2>
+        <ul>
+        <li><a href="principalAdmin.php">Panel Administrador</a></li>
+        <li><a href="">Agregar Cajeros</a></li>
+        <li><a href="logica/cerrarSessionAdmin.php">Cerrar Sesión</a></li>   
+        </ul>
+    </div>
+    <div class="contenido">
+        <img class="menu-bar"src="imagenes/sidebar.png" alt="sidebar" width="45" height="45">
+        <div>
+           <form action="conexiones/processListaCajeros.php" method="POST">
+            <label>Correo</label>
+            <input type="text" name="email" value="Correo">
+            <label>Rol</label>
+            <input type="text" name="role" value="Rol">
+            <label>Telefono</label>
+            <input type="text" name="phone" value="Tel">
+            <label>Password</label>
+            <input type="text" name="password" value="Password">
+            <label>Estado</label>
+            <input type="text" name="status" value="Estado">
+            <label>Nombre Completo</label>
+            <input type="text" name="name" value="Nombre">
+            <button type="submit" name="confirmar">Confirmar</button>
+            </form>
+        </div>
+    </div>
+    <script src="js/abrir.js"></script>
 </body>
 </html>
