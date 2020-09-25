@@ -6,7 +6,7 @@
         <h1>Log In de Administrador</h1>
         <div class="form-group">
             <label for="">Usuario: </label>
-            <input type="text" name="usuario" class="form-control" id="" placeholder="Usuario" pattern="^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+" required title="Este campo requiere un usuario">
+            <input type="text" name="usuario" class="form-control" id="" placeholder="Email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required title="Este campo requiere un correo electrónico">
         </div>
         <div class="form-group">
             <label for="">Contraseña: </label>
