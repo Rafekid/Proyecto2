@@ -1,0 +1,13 @@
+DELIMITER $$
+CREATE PROCEDURE SP_ADD_USER(IN mail VARCHAR(80), IN rol INT, IN tel INT(15), IN pwd INT(20), IN estado INT)
+BEGIN
+START TRANSACTION;
+INSERT INTO users VALUES(
+NULL, mail,rol,tel,pwd,estado);	
+IF (@@error_count=0) THEN
+COMMIT;
+ELSE
+ROLLBACK;
+END IF;
+END $$
+DELIMITER ;
