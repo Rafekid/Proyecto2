@@ -1,0 +1,9 @@
+Usar la fecha y hora al inicio
+
+24/09/2020 21:48
+240920202148
+
+seguid de un _ y el nombre del archivo
+
+240920202148_CreateSchema.sql
+
