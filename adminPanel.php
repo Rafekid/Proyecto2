@@ -24,7 +24,8 @@
             <div class="sidebar">
                 <h2>MENÚ</h2>
                     <ul>
-                    <li><a href="bloqueoCajeros.php">Gestion de Usuarios de Cajeros</a></li>
+                    <li><a href="agregarCajeros.php">Agregar Cajeros</a></li>
+                    <li><a href="bloqueoCajeros.php">Bloquear Cajeros</a></li>
                     <li><a href="logica/cerrarSessionAdmin.php">Cerrar Sesión</a></li>
                     <li><a href="logica/cerrarSistema.php">Cerrar Sistema</a></li>    
                     </ul>
