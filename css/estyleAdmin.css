@@ -84,10 +84,30 @@ body{
     }
 }
 
-/*  .menu-bar{
-    cursor: pointer;
+
+
+/*CSS para la tabla*/
+#cajerosTabla {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
 }
 
-.abrir{
-    transform: translateX(250px);
-}  */
+#cajerosTabla td, #cajerosTabla th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#cajerosTabla tr:nth-child(even){background-color: #f2f2f2;}
+
+#cajerosTabla tr:hover{
+    background-color: #ddd;
+}
+
+#cajerosTabla th{
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
