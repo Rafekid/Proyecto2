@@ -25,10 +25,10 @@
         $result = $conexion->query("SELECT * FROM user WHERE id_user=$id") or die($conexion->error());
         if(count($result)==1){
             $row = $result->fetch_array();
-            /* $email2 = $row['email'];
-            $role2 = $row['role'];
+            $email2 = $row['email'];
+            /* $role2 = $row['role'];
             $phone2 = $row['phone'];
-            $password2 = $row['password']; */
+            $password2 = $row['password'];  */
             $status2 = $row['status'];
             /* $name2 = $row['name']; */
         }
@@ -83,7 +83,7 @@
                         }
                     ?>
                     <h1>Listado de Cajeros</h1>
-                    <table>
+                    <table id="cajerosTabla">
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -131,17 +131,18 @@
                             echo $phone2;?>">
                             <label>Password</label>
                             <input type="text" name="password" placeholder="Password" value="<?php echo $password2;?>"> -->
+                            
                             <label>Estado</label>
                             <br>
-                            <input type="text" name="status" placeholder="Estado" value="<?php
+                            <input type="text" name="status" placeholder="" value="<?php
                             echo $status2;?>">
-                            <label>0 para bloquer 1 para desbloquear</label><br>
                             <!-- <label>Nombre Completo</label>
                             <input type="text" name="name" placeholder="Nombre" value="<?php
                             echo $name2;?>"> -->
                         <?php 
                         if($update == true): 
-                        ?>
+                        ?>  
+                            <label>0 para bloquer 1 para desbloquear a <?php echo $email2;?></label><br>
                             <button type="submit" name="editarInactivos">Confirmar</button>
                         <?php endif; ?>
                         </form>
