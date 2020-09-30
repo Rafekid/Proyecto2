@@ -9,7 +9,7 @@
         header("location: loginAdmin.php");
         die();
     } 
-
+    
     $host = "localhost";
     $usuario = "admin1";
     $clave = "1234";
@@ -17,20 +17,33 @@
     $mysqli = new mysqli($host,$usuario,$clave,$db) or die(mysqli_error($mysqli));
             
 
-    if(isset($_POST['confirmar'])){
+    if(isset($_POST['agregar'])){
         $email = $_POST['email'];
-        $role = $_POST['role'];
+        /* $role = $_POST['role']; */
+        $role2 = 2;
         $phone = $_POST['phone'];
         $password = $_POST['password'];
-        $status = $_POST['status'];
+        $conf_password = $_POST['conf_password'];
+        $status1 = 1;
         $name = $_POST['name'];
+        if($password!=$conf_password){
 
-        $_SESSION['message'] = "Se agregó registro";
-        $_SESSION['msg_type'] = "success";
+            $_SESSION['message'] = "Las contraseñas no coinciden!";
+            $_SESSION['msg_type'] = "danger";
 
-        header("location: ../listaCajeros.php");
+            header("location: ../agregarCajeros.php");
 
-        $mysqli->query("call create_user('$email','$name','$role','$phone','$password','$status')") or die($mysqli->error);
+        }else{
+
+            $_SESSION['message'] = "Se agregó registro";
+            $_SESSION['msg_type'] = "success";
+
+            header("location: ../agregarCajeros.php");
+
+        $mysqli->query("call create_user('$email','$name','$role2','$phone','$password','$status1')") or die($mysqli->error);
+        
+        }
+
     }
 
     if(isset($_GET['eliminar'])){
