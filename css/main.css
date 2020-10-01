@@ -1,0 +1,48 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+ 
+p {
+  margin-bottom: 20px;
+}
+
+.box {
+    margin: 0 auto;
+    width: 500px;
+    padding: 20px;
+}
+
+.box-user {
+    width: 200px;
+    text-align: center;
+    background-color: #E9E6E6;
+    border-radius: 1em;
+}
+
+.box-user a {
+    text-decoration: none;
+    color: black;
+}
+
+.box-user p {
+    text-align: center;
+}
+
+.box-user i {
+    text-align: center;
+    padding: 0.2em;
+}
+.contenedor {
+    background: white;
+    margin: 20px 0;
+    padding: 10px;
+}  
+
+#usuario {
+    float: left;
+}
+
+#admin {
+    float: right;
+}
