@@ -50,25 +50,23 @@
                             <label>Usuario</label>
                             <br>
                             <input type="text" name="email" 
-                            placeholder="Correo Electrónico" value="" id="email">
-                            <!-- <label>Rol</label>
-                            <br>
-                            <input type="text" name="role" placeholder="Tipo de Rol" value=""> -->
+                            placeholder="Correo Electrónico" value="" id="email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required title="Este campo requiere un correo electrónico">
                             <label>Telefono</label>
                             <br>
-                            <input type="text" name="phone" placeholder="Teléfono" value="" id="email">
+                            <input type="text" name="phone" placeholder="Telefono" value="" id="phone" pattern="^([0-9]){8,15}$" require title="Este campo acepta números">
                             <label>Password</label>
                             <br>
-                            <input type="text" name="password" placeholder="Contraseña"  value="" id="password">
+                            <input type="text" name="password" placeholder="Contraseña"  value="" id="password" pattern="^([a-zA-Z0-9]){5,20}$" require title="Este campo acepta contraseñas de 5 a 20 dígitos y debe contener ya sea letras mayúsculas, minúsculas o números únicamente">
                             <label>Password</label>
                             <br>
-                            <input type="text" name="conf_password" placeholder="Confirmar Contraseña"  value="" id="conf_password">
+                            <input type="text" name="conf_password" placeholder="Confirmar Contraseña"  value="" id="conf_password" pattern="^([a-zA-Z0-9]){5,20}$" require title="Este campo acepta contraseñas de 5 a 20 dígitos y debe contener ya sea letras mayúsculas, minúsculas o números únicamente">
                             <!-- <label>Estado</label>
                             <br>
                             <input type="text" name="status" placeholder="Estado" value=""> -->
                             <label>Nombre Completo</label>
                             <br>
-                            <input type="text" name="name" placeholder="Nombre Completo" value="" id="name">
+                            <input type="text" name="name" placeholder="Nombre Completo" value="" id="name"
+                            pattern="^([a-zA-Z\s])*$" require title="Este campo acepta letras únicamente">
                             <br>
                             <button type="submit" name="agregar">Agregar</button>
                         </form>
