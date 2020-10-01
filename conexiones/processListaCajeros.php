@@ -26,22 +26,27 @@
         $conf_password = $_POST['conf_password'];
         $status1 = 1;
         $name = $_POST['name'];
-        if($password!=$conf_password){
+        if($email=="" OR $phone=="" OR $password=="" OR $conf_password=="" OR $name==""){
+
+            $_SESSION['message'] = "No pueden existir campos vacíos";
+            $_SESSION['msg_type'] = "danger";
+
+            header("location: ../agregarCajeros.php");
+
+        }elseif($password!=$conf_password){
 
             $_SESSION['message'] = "Las contraseñas no coinciden!";
             $_SESSION['msg_type'] = "danger";
 
             header("location: ../agregarCajeros.php");
-
         }else{
-
-            $_SESSION['message'] = "Se agregó registro";
+            
+            $_SESSION['message'] = "Se agregó nuevo Cajero al Sistema";
             $_SESSION['msg_type'] = "success";
 
             header("location: ../agregarCajeros.php");
 
         $mysqli->query("call create_user('$email','$name','$role2','$phone','$password','$status1')") or die($mysqli->error);
-        
         }
 
     }
