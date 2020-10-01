@@ -26,6 +26,9 @@
                     <ul>
                     <li><a href="agregarCajeros.php">Agregar Cajeros</a></li>
                     <li><a href="bloqueoCajeros.php">Bloquear Cajeros</a></li>
+                    <li><a href="monitoreo1.php">Transferencias Diarias</a></li>
+                    <li><a href="monitoreo2.php">Transacciones X Usuario</a></li>
+                    <li><a href="monitoreo3.php">Monto Acumulado</a></li>
                     <li><a href="logica/cerrarSessionAdmin.php">Cerrar Sesión</a></li>
                     <li><a href="logica/cerrarSistema.php">Cerrar Sistema</a></li>    
                     </ul>
