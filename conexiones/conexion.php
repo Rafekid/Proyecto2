@@ -1,9 +1,8 @@
 <?php
     $host = "localhost";
-    $usuario = "root";
-    $clave = "";
-    $db = "banca";
-
+    $usuario = "banco";
+    $clave = "banco";
+    $db = "banco";
     $conexion=mysqli_connect($host,$usuario,$clave,$db);
 
 ?>

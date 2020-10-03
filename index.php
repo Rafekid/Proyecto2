@@ -1,5 +1,5 @@
 <?php
-include "layouts/headUsuario.php"; ?>
+include "layouts/head.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <?php include "navbar.php"; ?>
@@ -7,7 +7,7 @@ include "layouts/headUsuario.php"; ?>
    <section class="contenido wrapper">
        <div class="box">
             <div class="box-user" id="usuario">
-                <a href="LoginUsuario.php">
+                <a href="usuario/index.php">
                     <i class="fas fa-user fa-5x" aria-hidden="true"></i>
                     <p>Usuario</p>
                 </a>
