@@ -2,7 +2,6 @@
 <html lang="en">
 <?php include "../layouts/header_cajero_out.php";
 $message =  isset($_SESSION["error"]) ?$_SESSION["error"] :"";
-unset($_SESSION["error"]);
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
 

@@ -4,7 +4,7 @@
 
 <body>
 <div class="login_container">
-    <h1>Crear Cuenta de usuario </h1>
+    <h1>Bienvenido </h1>
 </div>
 </body>
 </html>

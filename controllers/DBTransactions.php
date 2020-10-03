@@ -10,7 +10,7 @@ class DBTransactions{
 
     private static $instance;
 
-    private $conexion = null;
+    public $conexion = null;
 
     private $host = "localhost";
     private $usuario = "root";
@@ -31,6 +31,8 @@ class DBTransactions{
 
         return self::$instance;
     }
+
+
 
 
     public function getRows($query)
@@ -68,6 +70,4 @@ class DBTransactions{
         }
         return false;
     }
-
-
 }
