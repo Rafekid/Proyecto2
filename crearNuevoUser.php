@@ -7,6 +7,7 @@ include "layouts/head.php"; ?>
 
 <?php
 
+include "controllers/MailManager.php";
 if(empty(session_id())){
     session_start();
 }
@@ -34,6 +35,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $error = UserController::instance()->crearCuentayUsuario($cuenta, $email, $name, $role,$phone,$password,$status);
 
         if(empty($error)){
+            MailManager::instance()->sendWelcomeMail($email, $name);
+
             $_SESSION["success"] = "Se ha creado su usuario, revise su correo electrónico se le ha enviado un enlace para activar tu cuenta.";
             header("location: ./crearNuevoUser.php");
         }else{

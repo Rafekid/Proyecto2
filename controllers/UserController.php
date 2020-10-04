@@ -156,4 +156,14 @@ class UserController
         $stmt->close();
         return $error;
     }
+
+    public function activateAcount($email){
+        $connection = DBTransactions::getInstance();
+        $stmt = $connection->conexion->prepare("UPDATE USER SET status = 1 WHERE email=?");
+        $stmt->bind_param("S", $email);
+        $stmt->execute();
+        $error = $connection->conexion->error;
+        $stmt->close();
+        return $error;
+    }
 }
