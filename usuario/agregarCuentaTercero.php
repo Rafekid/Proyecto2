@@ -3,7 +3,7 @@ include "../layouts/headUsuario.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <link rel="stylesheet" href="../css/form.css">
-<?php include "../navbar.php"; 
+<?php include "navbar.php"; 
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 

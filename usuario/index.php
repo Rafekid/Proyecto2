@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include "../layouts/headUsuario.php";
-include "../navbar.php";
-$user = $_SESSION[$session_name]; ?>
+<?php 
+include "../layouts/headUsuario.php";
+include "navbar.php";
+$user = $_SESSION[$session_name];
+$cuenta = UserController::instance()->cuentaById($user->idUser); ?>
 
 <body>
     <div class="contenido wrapper">
@@ -10,6 +12,10 @@ $user = $_SESSION[$session_name]; ?>
         <div id="contenedor" class="clearfix">
         
             <div id="principal">
+                <h1>Mi cuenta</h1>
+                <h6>Número de cuenta: <?= $cuenta->idAccount ?></h6>
+                <h6>Monto <?= $cuenta->amount ?></h6>
+                <br>
                 <h1>Transacciones</h1>
                 <?php 
                 $transacciones = UserController::instance()->transacciones( $user->idUser);

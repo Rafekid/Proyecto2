@@ -90,10 +90,23 @@ class UserController
   
         return $cuentas;
     }
+
     public function cuenta($idAccount) {
         $connection = new DBTransactions();
         $stmt = $connection->conexion->prepare("SELECT * FROM `account` WHERE `id_account` = ?");
         $stmt->bind_param("i", $idAccount);
+        $stmt->execute();
+        $result = $stmt->get_result(); 
+        $userResult = $result->fetch_assoc();
+        $cuenta = new Cuenta($userResult["id_account"], $userResult["id_user"], $userResult["name"], $userResult["dpi"], $userResult["amount"], $userResult["status"] );
+        $connection->conexion->close();
+        return $cuenta;
+    }
+
+    public function cuentaById($idUser) {
+        $connection = new DBTransactions();
+        $stmt = $connection->conexion->prepare("SELECT * FROM `account` where `id_user` = ? LIMIT 1");
+        $stmt->bind_param("i", $idUser);
         $stmt->execute();
         $result = $stmt->get_result(); 
         $userResult = $result->fetch_assoc();
@@ -189,6 +202,7 @@ class UserController
         $transferencias = $this->transeferencias($cuentaOrigen, $cuentaDestino);
         $cuentaTercero = $this->cuentaTercero($cuentaDestino, $idUser);
         $cuenta = $this->cuenta($cuentaOrigen);
+        $cuentaThird = $this->cuenta($cuentaDestino);
         
         if (count($transferencias) >= $cuentaTercero->maxTransactions) {
            return 2;
@@ -202,9 +216,70 @@ class UserController
             return 4;
         }
         
-        $stmt = $connection->conexion->prepare("CALL transeferencia(?, ?, ?, ?);");
-        $stmt->bind_param("iiid", $idUser, $cuentaOrigen, $cuentaDestino, $amount);
+        $stmt = $connection->conexion->prepare("CALL transeferencia(?, ?, ?, ?, ?);");
+        $stmt->bind_param("iiiid", $idUser, $cuentaThird->idUser, $cuentaOrigen, $cuentaDestino, $amount);
         $stmt->execute();
+
+        $this->sumOrRestAmount($amount, $cuentaOrigen, "rest");
+        $this->sumOrRestAmount($amount, $cuentaDestino, "sum");
         return 1;
+   
+    }
+
+    public function crearCuentayUsuario($account, $email, $name, $rol, $phone, $pass, $estado){
+        $connection = DBTransactions::getInstance();
+        $stmt = $connection->conexion->prepare("CALL create_user_account(?,?, ?, ?, ?, ?, ?); ");
+        $stmt->bind_param("ississb", $account, $email, $name, $rol,$phone, $pass, $estado );
+        $stmt->execute();
+        $error = $connection->conexion->error;
+        $stmt->close();
+        return $error;
+
+    }
+
+    public function activateAcount($email){
+        $connection = DBTransactions::getInstance();
+        $stmt = $connection->conexion->prepare("UPDATE USER SET status = 1 WHERE email=?");
+        $stmt->bind_param("S", $email);
+        $stmt->execute();
+        $error = $connection->conexion->error;
+        $stmt->close();
+        return $error;
+    }
+
+
+    public function sumOrRestAmount($amount, $idAccount, $action) {
+        $connection = new DBTransactions();
+        $cuenta = $this->cuenta($idAccount);
+        $newAmoun = 0;
+        if ($action == "rest") {
+            $newAmoun = $cuenta->amount - $amount;
+        } else {
+            $newAmoun = $cuenta->amount + $amount;
+        }
+
+        $stmt = $connection->conexion->prepare("UPDATE account SET `amount` = ? WHERE id_account = ?");
+        $stmt->bind_param("di", $newAmoun, $idAccount);
+        $stmt->execute();
+        $error = $connection->conexion->error;
+        $stmt->close();
+        return $error;
+    }
+
+    public function History($idAccount){
+        $connection = new DBTransactions();
+        $stmt = $connection->conexion->prepare("SELECT * FROM `transfers` WHERE `id_origin_account` = ? ");
+        $stmt->bind_param("i", $idAccount);
+        $stmt->execute();
+        $result = $stmt->get_result(); 
+        $history = [];
+        if ($result->num_rows > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $cuenta = new Transferencia($row["id_transfers"], $row["id_origin_account"], $row["id_destination_account"], $row["amount"], $row["fecha"]);
+                $history [] = $cuenta;
+            }
+        }
+  
+        return $history;
     }
 }

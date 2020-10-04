@@ -1,6 +1,5 @@
 body{
     margin:0;
-    background: #cdd7ea;
 }
 
 .sidebar{
@@ -121,4 +120,93 @@ body{
 .error{
     color: indianred;
     font-weight: bold;
+}
+.success{
+    color: #2fcd55;
+    font-weight: bold;
+}
+
+
+/*Navbar Cajero*/
+
+.wrapper {
+    width: 80%;
+    margin: auto;
+    overflow:hidden;
+}
+
+header {
+    background: #008fd5;
+    width: 100%;
+    position: fixed;
+    z-index: 10;
+    padding-top: 0;
+}
+
+nav {
+    float: left;
+    width: 100%;
+}
+
+nav ul {
+    list-style: none;
+    overflow: hidden;
+    margin-bottom: 0;
+    width: 100%;
+}
+
+nav ul li {
+    float: left;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    /*border-bottom: solid 5px;*/
+}
+nav ul li a i {
+    font-size: 20px !important;
+}
+nav ul li.right {
+    float: right !important;
+}
+
+
+nav ul li a {
+    display: block;
+    padding: 20px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+}
+nav ul li:hover , nav ul li.active{
+    /*border-bottom: solid 5px #0078b4;*/
+    background-color: #0078b4;
+}
+.contenido {
+    padding-top: 80px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: white !important;
+    text-decoration: none !important;
+}
+
+.main-color{
+    color: #626262 !important;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.btn-main {
+    color: white;
+    font-weight: bold;
+    background-color: #005a87;
+}
+
+.btn-main:hover{
+    background-color: #004465;
 }
