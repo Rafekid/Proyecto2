@@ -9,7 +9,8 @@ p {
 
 .box {
     margin: 0 auto;
-    width: 500px;
+    width: 100%;
+    max-width: 670px;
     padding: 20px;
 }
 
@@ -18,6 +19,8 @@ p {
     text-align: center;
     background-color: #E9E6E6;
     border-radius: 1em;
+    float: left;
+    margin: 5px;
 }
 
 .box-user a {

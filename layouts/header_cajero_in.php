@@ -18,7 +18,8 @@ include "../helpers/AuthRedirect.php";
     <section class="wrapper">
         <nav>
             <ul>
-                <li class="<?php if($section == "home") echo "active"; ?>"><a href="./index.php"><i class="fas fa-user-shield" aria-hidden="true"></i></a></li>
+
+                <li><a href="./index.php"><img src="/bancaUMG/imagenes/logo.png" alt="" height="24"></a></li>
                 <li class="<?php if($section == "create") echo "active"; ?>"><a href="./create_account.php">Creación Cuenta</a></li>
                 <li class="<?php if($section == "deposit") echo "active"; ?>"><a href="./deposit.php">Depósito</a></li>
                 <li class="<?php if($section == "retirement") echo "active"; ?>"><a href="./retirement.php">Retiro</a></li>

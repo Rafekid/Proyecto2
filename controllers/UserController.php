@@ -146,4 +146,14 @@ class UserController
         $stmt2->execute();
         return 1;
     }
+
+    public function crearCuentayUsuario($account, $email, $name, $rol, $phone, $pass, $estado){
+        $connection = DBTransactions::getInstance();
+        $stmt = $connection->conexion->prepare("CALL create_user_account(?,?, ?, ?, ?, ?, ?); ");
+        $stmt->bind_param("ississb", $account, $email, $name, $rol,$phone, $pass, $estado );
+        $stmt->execute();
+        $error = $connection->conexion->error;
+        $stmt->close();
+        return $error;
+    }
 }

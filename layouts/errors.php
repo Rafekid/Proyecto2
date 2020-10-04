@@ -4,11 +4,11 @@ $success =  isset($_SESSION["success"]) ? $_SESSION["success"]."" :"";
 
 
 
-
 if ($error):
     ?>
     <p class="error"><?php echo $error?></p>
 <?php
+
     unset($_SESSION['error']);
 
 endif ?>

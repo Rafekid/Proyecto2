@@ -28,7 +28,7 @@ class CajeroController{
 
     public function login($email, $password){
 
-        $query = "SELECT id_user, email, role, phone, name FROM user WHERE password = '$password' AND email = '$email' AND role = 2";
+        $query = "SELECT id_user, email, role, phone, name FROM user WHERE password = '$password' AND email = '$email' AND role = 2 AND status = 1;";
 
         $rows = DBTransactions::getInstance()->getRows($query);
 

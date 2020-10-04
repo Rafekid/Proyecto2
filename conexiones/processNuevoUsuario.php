@@ -25,7 +25,7 @@
             $q2 = "call create_user('$email','null','$role','$phone','$password','$status')";
 
             $consulta = mysqli_query($conexion,$q2) or die(mysql_error());
-        } 
+        }
     }
 
 ?>
