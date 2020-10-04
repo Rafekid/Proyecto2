@@ -29,7 +29,7 @@ $user = $_SESSION[$session_name]; ?>
             <div id="lateral">
                 <h1 id="text-terceros">Cuentas de terceros</h1>
                 <br>
-                <a id="agregar" href="agregarCuentaTercero.php">Agregar Nueva</a>
+                <a id="agregar" href="agregarCuentaTercero.php">Agregar Nueva</a>  <a id="agregar" href="transferir.php">Transferir</a>
                 <br>
                 <br>
                 <?php 

@@ -14,6 +14,7 @@ include "../models/User.php";
 include "../models/Transaccion.php";
 include "../models/CuentaTercera.php";
 include "../models/Cuenta.php";
+include "../models/Transferencia.php";
 include "../controllers/UserController.php";
 include "../controllers/DBTransactions.php";
 include "../helpers/AuthRedirectIfLoguedUser.php";

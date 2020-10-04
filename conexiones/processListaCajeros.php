@@ -11,8 +11,8 @@
     } 
     
     $host = "localhost";
-    $usuario = "admin1";
-    $clave = "1234";
+    $usuario = "banco";
+    $clave = "banco";
     $db = "banco";
     $mysqli = new mysqli($host,$usuario,$clave,$db) or die(mysqli_error($mysqli));
             

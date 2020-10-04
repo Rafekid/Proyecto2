@@ -58,7 +58,7 @@ class UserController
     }  
 
     public function transacciones($idUser){
-        $connection = DBTransactions::getInstance();
+        $connection = new DBTransactions();
         $stmt = $connection->conexion->prepare("SELECT * FROM `transaction` WHERE id_user = ?");
         $stmt->bind_param("i", $idUser);
         $stmt->execute();
@@ -75,8 +75,8 @@ class UserController
     }
 
     public function cuentas($idUser){
-        $connection = DBTransactions::getInstance();
-        $stmt = $connection->conexion->prepare("SELECT * FROM `account` WHERE id_user = ?");
+        $connection = new DBTransactions();
+        $stmt = $connection->conexion->prepare("SELECT * FROM `account` WHERE id_user = ? AND `status` = 1");
         $stmt->bind_param("i", $idUser);
         $stmt->execute();
         $result = $stmt->get_result(); 
@@ -90,10 +90,38 @@ class UserController
   
         return $cuentas;
     }
+    public function cuenta($idAccount) {
+        $connection = new DBTransactions();
+        $stmt = $connection->conexion->prepare("SELECT * FROM `account` WHERE `id_account` = ?");
+        $stmt->bind_param("i", $idAccount);
+        $stmt->execute();
+        $result = $stmt->get_result(); 
+        $userResult = $result->fetch_assoc();
+        $cuenta = new Cuenta($userResult["id_account"], $userResult["id_user"], $userResult["name"], $userResult["dpi"], $userResult["amount"], $userResult["status"] );
+        $connection->conexion->close();
+        return $cuenta;
+    }
+
+    public function transeferencias($cuentaOrigen, $cuentaDestino){
+        $connection = new DBTransactions();
+        $stmt = $connection->conexion->prepare("SELECT * FROM `transfers` WHERE id_origin_account = ? AND `id_destination_account` = ?");
+        $stmt->bind_param("ii", $cuentaOrigen, $cuentaDestino);
+        $stmt->execute();
+        $result = $stmt->get_result(); 
+        $transferencias = [];
+        if ($result->num_rows > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $transferencia = new Transferencia($row["id_transfers"], $row["id_origin_account"], $row["id_destination_account"], $row["amount"], $row["fecha"] );
+                $transferencias [] = $transferencia;
+            }
+        }
+  
+        return $transferencias;
+    }
 
     public function cuentasTerceros($idUser){
-        $connection = DBTransactions::getInstance();
-        $stmt = $connection->conexion->prepare("SELECT * FROM `third_party_account` WHERE id_user = ?");
+        $connection = new DBTransactions();
+        $stmt = $connection->conexion->prepare("SELECT * FROM `third_party_account` WHERE id_user = ? AND `status` = 1");
         $stmt->bind_param("i", $idUser);
         $stmt->execute();
         $result = $stmt->get_result(); 
@@ -107,11 +135,20 @@ class UserController
         return $cuentas;
     }
 
-    
+    public function cuentaTercero($idAccount, $idUser) {
+        $connection = new DBTransactions();
+        $stmt = $connection->conexion->prepare("SELECT * FROM `third_party_account` WHERE `id_account` = ? AND `id_user` = ?");
+        $stmt->bind_param("ii", $idAccount, $idUser);
+        $stmt->execute();
+        $result = $stmt->get_result(); 
+        $userResult = $result->fetch_assoc();
+        $cuenta = new CuentaTercera($userResult["id_third_account"], $userResult["id_user"], $userResult["id_account"], $userResult["max_amount"], $userResult["max_transactions"], $userResult["alias"], $userResult["status"]);
+        $connection->conexion->close();
+        return $cuenta;
+    }
+
     public function crearcuentaTerceros(CuentaTercera $cuenta){
-        $connection = DBTransactions::getInstance();
-
-
+        $connection = new DBTransactions();
         $cuentas = $this->cuentas($cuenta->idUser);
 
         if (count($cuentas) > 0) {
@@ -144,6 +181,30 @@ class UserController
         $stmt2 = $connection->conexion->prepare("CALL create_third_account(?, ?, ?, ?, ?, ?);");
         $stmt2->bind_param("iidisi", $cuenta->idUser, $cuenta->idAccount, $cuenta->maxAmount, $cuenta->maxTransactions, $cuenta->alias, $cuenta->status);
         $stmt2->execute();
+        return 1;
+    }
+
+    public function transferir($idUser, $cuentaOrigen, $cuentaDestino, $amount) {
+        $connection = new DBTransactions();
+        $transferencias = $this->transeferencias($cuentaOrigen, $cuentaDestino);
+        $cuentaTercero = $this->cuentaTercero($cuentaDestino, $idUser);
+        $cuenta = $this->cuenta($cuentaOrigen);
+        
+        if (count($transferencias) >= $cuentaTercero->maxTransactions) {
+           return 2;
+        }
+
+        if ($amount > $cuentaTercero->maxAmount) {
+            return 3;
+        }
+
+        if ($amount > $cuenta->amount) {
+            return 4;
+        }
+        
+        $stmt = $connection->conexion->prepare("CALL transeferencia(?, ?, ?, ?);");
+        $stmt->bind_param("iiid", $idUser, $cuentaOrigen, $cuentaDestino, $amount);
+        $stmt->execute();
         return 1;
     }
 }

@@ -10,15 +10,17 @@ class DBTransactions{
 
     private static $instance;
 
-    private $conexion = null;
+    public $conexion = null;
 
     private $host = "localhost";
-    private $usuario = "root";
-    private $clave = "";
-    private $db = "banca";
+    private $usuario = "banco";
+    private $clave = "banco";
+    private $db = "banco";
+    private $port = "3308";
+
     public function __construct()
     {
-        $this->conexion=mysqli_connect($this->host,$this->usuario,$this->clave,$this->db);
+        $this->conexion=mysqli_connect($this->host, $this->usuario, $this->clave, $this->db, $this->port);
     }
 
 
@@ -28,7 +30,6 @@ class DBTransactions{
         {
             self::$instance = new self();
         }
-
         return self::$instance;
     }
 
@@ -55,6 +56,7 @@ class DBTransactions{
         return null;
     }
 
+
     public function executeQuery($query){
         if (!$this->conexion->connect_errno) {
             $stmt = $this->conexion->prepare($query);
@@ -68,6 +70,5 @@ class DBTransactions{
         }
         return false;
     }
-
-
+    
 }
