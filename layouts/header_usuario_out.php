@@ -7,11 +7,3 @@
         <title>Usuario</title>
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
-<?php
-include "../models/Transaccion.php";
-include "../models/User.php";
-include "../controllers/CajeroController.php";
-include "../controllers/UserController.php";
-include "../controllers/DBTransactions.php";
-include "../helpers/AuthRedirectUser.php";
-?>

@@ -1,3 +1,9 @@
+<?php
+include "models/User.php";
+include "controllers/UserController.php";
+include "controllers/DBTransactions.php";
+$session_name = 'cjr_sss_1';
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,9 +16,3 @@
 
 
 </head>
-<?php
-include "models/User.php";
-include "controllers/UserController.php";
-include "controllers/DBTransactions.php";
-$session_name = 'cjr_sss_1';
-?>

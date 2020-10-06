@@ -1,7 +1,7 @@
+<?php include "../layouts/headUsuario.php";?>
 <!DOCTYPE html>
 <html lang="en">
 <?php 
-include "../layouts/headUsuario.php";
 include "navbar.php";
 $user = $_SESSION[$session_name];
 $cuenta = UserController::instance()->cuentaById($user->idUser); 

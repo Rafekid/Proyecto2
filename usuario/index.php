@@ -1,7 +1,7 @@
+<?php include "../layouts/headUsuario.php";?>
 <!DOCTYPE html>
 <html lang="en">
 <?php 
-include "../layouts/headUsuario.php";
 include "navbar.php";
 $user = $_SESSION[$session_name];
 $cuenta = UserController::instance()->cuentaById($user->idUser); ?>
@@ -45,7 +45,8 @@ $cuenta = UserController::instance()->cuentaById($user->idUser); ?>
                         <div class="terceros">
                             <h4><?= $value->alias ?></h4>
                             <h6>Cuenta # <?= $value->idAccount?></h6>
-                            <h6>Monto Máximo <?= $value->maxAmount?></h6>
+                            <h6>Monto Máximo: <?= $value->maxAmount?></h6>
+                            <h6>Transferencias Máximas: <?= $value->maxTransactions ?></h6>
                         </div>
                     <?php       
                     endforeach; 

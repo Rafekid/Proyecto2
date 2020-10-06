@@ -7,7 +7,7 @@
                 <li><a href="historial.php">Historial</a></li>
 
 
-                <li class="right"><a href="logout.php">Cerra Sesión</a></li>
+                <li class="right"><a href="logout.php"><i class="fas fa-power-off" aria-hidden="true"></i></a></li>
             </ul>
         </nav>
     </section>
